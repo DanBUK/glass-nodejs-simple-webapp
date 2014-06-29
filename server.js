@@ -14,6 +14,15 @@ var UTIL = require('util');
 
 var app = EXPRESS();
 
+app.use(EXPRESS.static(__dirname + '/public'));
+app.use(SERVEFAVICON(__dirname + '/public/favicon.ico'));
+app.use(BODYPARSER());
+app.use(COOKIEPARSER()); 
+app.use(COOKIESESSION({secret: 'mysecretcookie'}));
+
+app.set('view engine', 'jade');
+app.set('views', './views');
+
 if ('development' == app.get('env')) {
   var CONFIG = require(__dirname + '/config-development.js');
 } else {
@@ -32,7 +41,6 @@ var getMirrorAPIClient = function (accessToken, refreshToken, callback) {
     .withAuthClient(OAuth2Client)
     .execute(callback);
 };
-
 
 
 EVERYAUTH.debug = false;
@@ -131,18 +139,7 @@ EVERYAUTH.google
   })
   .redirectPath('/');
 
-
-
-app.use(EXPRESS.static(__dirname + '/public'));
-app.use(SERVEFAVICON(__dirname + '/public/favicon.ico'));
-app.use(BODYPARSER());
-app.use(COOKIEPARSER()); 
-app.use(COOKIESESSION({secret: 'mysecretcookie'}));
 app.use(EVERYAUTH.middleware(app));
-
-app.set('view engine', 'jade');
-app.set('views', './views');
-
 
 app.get('/', function (req, res) {
   res.render('home');
@@ -157,13 +154,13 @@ app.post('/send/html', function (req, res) {
     res.redirect('/');
   } else {
     sendCardToUser(req.user.id, req.body.html, function (err, success) {
-      var msg = "";
+      var msg = "HTML Sent!";
       if (err) msg = err.toString();
       res.render('send/html', {message: msg});
     });
   }
 });
 
-app.listen(8080, "0.0.0.0");
+app.listen(CONFIG.myListenPort, CONFIG.myListenHost);
 
 module.exports = app;

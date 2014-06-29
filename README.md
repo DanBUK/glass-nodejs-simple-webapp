@@ -10,7 +10,6 @@ Get yourself some API keys from Google. You'll need to configure and application
 
 - For AUTHORIZED JAVASCRIPT ORIGINS I normally set both http://127.0.0.1:8080 https://glass-nodejs-simple-webapp.f-box.org/
 - For AUTHORIZED REDIRECT URI Set the same, but with the path included /auth/google/callback
-- 
 
 ## Installation
 

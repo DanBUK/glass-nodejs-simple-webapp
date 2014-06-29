@@ -22,7 +22,7 @@ $ ${EDITOR} config-development.js # And update the API keys at least.
 $ ./server.js
 ~~~~
 
-You should then be able to access the site at (http://127.0.0.1:8080)[http://127.0.0.1:8080].
+You should then be able to access the site at http://127.0.0.1:8080.
 
 ## Help
 

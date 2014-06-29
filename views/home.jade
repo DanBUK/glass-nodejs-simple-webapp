@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  - if (everyauth.loggedIn)
+    h2 Home
+    p
+      a(href='/send/html') Send HTML to Glass.
+    h3
+      a(href='/logout') Logout

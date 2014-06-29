@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  - if (everyauth.loggedIn)
+    h2 Authenticated
+    p= message
+    div.htmlbox
+        form(name="html", action="/send/html", method="post")
+          textarea(rows="20", cols="80", name="html")
+          input(type="submit", value="Send")

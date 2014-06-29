@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title= typeof(title) !== 'undefined' ? title : "Glass MirrorAPI App"
+  body
+    h1 Glass MirrorAPI App
+    #main
+      - if (!everyauth.loggedIn)
+        h2 Not Authenticated
+        #google-login
+          a(href='/auth/google', style='border: 0px')
+            img(style='border: 0px', src='https://www.google.com/favicon.ico')
+      block content
